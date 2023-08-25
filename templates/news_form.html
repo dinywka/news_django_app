@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add News</title>
+</head>
+<body>
+    <h2>Add News</h2>
+    <form action="{% url 'add_news' %}" method="post">
+        {% csrf_token %}
+
+        <label for="title">News Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.title }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="tags">Tags:</label>
+    <p>Удерживайте клавишу Ctrl (Windows) или Command (Mac), чтобы выбрать несколько тегов.</p>
+
+        <select id="tags" name="tags[]" multiple>
+            {% for tag in tags %}
+                <option value="{{ tag.id }}">{{ tag.title }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="submit" value="Add News">
+    </form>
+</body>
+</html>

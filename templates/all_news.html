@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for single_news in news %}
+    <li>
+        {{ single_news.title }}
+
+        {% for tag in single_news.tags.all %}
+            {{ tag.title }}
+        {% endfor %}
+
+        {{ single_news.category.title }}
+    </li>
+{% endfor %}
+
+
+</ul>
+</body>
+</html>
